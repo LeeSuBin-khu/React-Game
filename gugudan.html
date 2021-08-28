@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            class GuGuDan extends React.Component {
+                constructor(props) {
+                    super(props);
+                    this.state = { //변하는 것 = state
+                        Num1: Math.ceil(Math.random()*9),
+                        Num2: Math.ceil(Math.random()*9),
+                        value: '',
+                        result: '',
+                    };
+                }
+
+                //{}안에는 JS를 쓸 수 있음
+                render() {
+                    return (
+                        <div>
+                            <div>{this.state.Num1} x {this.state.Num2} = ?</div> 
+                            <form>
+                                <input type="number" value={this.state.value} onChange = {(e) => this.setState({value: e.target.value})} />
+                                <button onClick = {()=>event.preventDefault(), console.log(this.state.value)}>입력!</button>
+                            </form>
+                            <div>{parseInt(this.state.value) === this.state.Num1*this.state.Num2 ? '딩동댕' : '' }{console.log(this.state.value === this.state.Num1*this.state.Num2)}</div>
+                        </div>
+                        );
+                }
+            }
+        </script>
+        <script type="text/babel">
+            ReactDOM.render(<GuGuDan />, document.querySelector('#root'));
+        </script>
+    </body>
+</html>
