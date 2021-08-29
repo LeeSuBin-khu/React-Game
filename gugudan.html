@@ -18,17 +18,44 @@
                     };
                 }
 
+                onSubmit=(e) => {
+                                e.preventDefault();
+                                if(parseInt(this.state.value) === this.state.Num1 * this.state.Num2) {
+                                    this.setState((prevState) => {
+                                    return {
+                                        result: '딩동댕' + prevState.value,
+                                        Num1: Math.ceil(Math.random()*9),
+                                        Num2: Math.ceil(Math.random()*9),
+                                        value: '',
+                                    };
+                                    });
+                                    this.input.focus();
+                                } else {
+                                    this.setState( {
+                                    result: '땡',
+                                    value: '',
+                                    });
+                                    this.input.focus();
+                                }
+                            };
+
+                onChange = (e) => this.setState({value: e.target.value});
+
+                input;          
+
+                refFocus = (c) => {this.input = c;};
+
                 //{}안에는 JS를 쓸 수 있음
                 render() {
                     return (
-                        <div>
+                        <React.Fragment>
                             <div>{this.state.Num1} x {this.state.Num2} = ?</div> 
-                            <form>
-                                <input type="number" value={this.state.value} onChange = {(e) => this.setState({value: e.target.value})} />
-                                <button onClick = {()=>event.preventDefault(), console.log(this.state.value)}>입력!</button>
+                            <form onSubmit={this.onSubmit}>
+                                <input ref={this.refFocus}type="number" value={this.state.value} onChange = {this.onChange} />
+                                <button>입력!</button>
                             </form>
-                            <div>{parseInt(this.state.value) === this.state.Num1*this.state.Num2 ? '딩동댕' : '' }{console.log(this.state.value === this.state.Num1*this.state.Num2)}</div>
-                        </div>
+                            <div>{this.state.result}</div>
+                        </React.Fragment>
                         );
                 }
             }
