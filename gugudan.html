@@ -8,7 +8,7 @@
         <div id="root"></div>
         <script type="text/babel">
             class GuGuDan extends React.Component {
-                constructor(props) {
+                constructor(props) {///////
                     super(props);
                     this.state = { //변하는 것 = state
                         Num1: Math.ceil(Math.random()*9),
@@ -39,7 +39,7 @@
                                 }
                             };
 
-                onChange = (e) => this.setState({value: e.target.value});
+                onChange = (e) => this.setState({value: e.target.value}); ////
 
                 input;          
 
@@ -51,7 +51,7 @@
                         <React.Fragment>
                             <div>{this.state.Num1} x {this.state.Num2} = ?</div> 
                             <form onSubmit={this.onSubmit}>
-                                <input ref={this.refFocus}type="number" value={this.state.value} onChange = {this.onChange} />
+                                <input ref={this.refFocus} type="number" value={this.state.value} onChange = {this.onChange} />
                                 <button>입력!</button>
                             </form>
                             <div>{this.state.result}</div>
