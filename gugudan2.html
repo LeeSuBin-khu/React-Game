@@ -20,7 +20,7 @@
 
                const onSubmitForm = (e) => {
                     e.preventDefault();
-                    if(parseInt(this.state.value) === this.state.Num1 * this.state.Num2) {
+                    if(parseInt(value) === first * second) {
                         setResult('정답: ' + value);
                         setFirst(Math.ceil(Math.random()*9));
                         setSecond(Math.ceil(Math.random()*9));
@@ -33,12 +33,20 @@
                     }
                };
 
+            //    onChange = (e) => {
+            //        this.setState({ value: e.target.value });
+            //    };
+
+            //    onRefInput = (c) => {
+            //        this.input = c;
+            //    };
+
                return (
                    <React.Fragment>
                    <div>{first} 곱하기 {second} =?</div>
-                   <form>
-                        <input value={value} />
-                        <button>입력</button>
+                   <form onSubmit={onSubmitForm}>
+                        <input type="number" value={value} onChange={onChangeInput}/>
+                        <button id="button">입력</button>
                     </form>
                     <div id="result">{result}</div>
                    </React.Fragment>
